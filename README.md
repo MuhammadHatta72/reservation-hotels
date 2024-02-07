@@ -1,2 +1,2 @@
 # Aplikasi Reservasi Hotel Berbasis Website
-## Laravel
+## PHP Native dan Mysql
