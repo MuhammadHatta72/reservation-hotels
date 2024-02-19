@@ -259,7 +259,6 @@
                     <p class="mb-4">Daftar kamar yang terdaftar di sistem.</p>
 
                     <div class="row">
-
                         <?php
                             foreach($query_hasil_kamar as $kamar){
                         ?>
@@ -303,7 +302,6 @@
                         <?php
                             }
                         ?>
-
                     </div>
 
                 </div>

@@ -120,6 +120,7 @@
                   <a href="#about" class="nav-item nav-link">Tentang</a>
                   <a href="#service" class="nav-item nav-link">Layanan</a>
                   <a href="#facilities" class="nav-item nav-link">Fasilitas</a>
+                  <a href="semua_kamar.php" class="nav-item nav-link">Kamar</a>
                   <a href="#contact" class="nav-item nav-link">Kontak</a>
                 </div>
                 <a
