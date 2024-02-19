@@ -1,5 +1,6 @@
 <?php
     include 'functions/koneksi.php';
+    session_start();
     $query_kamar = mysqli_query($conn, "SELECT * FROM rooms");
     $query_hasil_kamar = mysqli_fetch_all($query_kamar, MYSQLI_ASSOC);
 ?>
@@ -236,6 +237,9 @@
                 Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit,
                 sed stet lorem sit clita duo justo magna dolore erat amet
               </p>
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Launch demo modal
+              </button>
               <div class="row">
                     <?php
                         foreach($query_hasil_kamar as $kamar){
@@ -247,6 +251,8 @@
                                 <div class="row no-gutters align-items-center">
                                     <div class="col mr-2">
                                         <div class="h5 mb-0">Kamar <?= $kamar['room_number'] ?></div>
+                                        <!-- format rupiah -->
+                                        <p class="mb-0">Harga : Rp. <?= number_format($kamar['harga'], 0, ',', '.') ?></p>
                                     </div>
                                     <div class="col-auto">
                                         <i class="fas fa-bed fa-2x text-gray-300"></i>
@@ -262,7 +268,8 @@
                                 </div>
                                 <div class="row no-gutters align-items-center mt-3">
                                     <div class="col-md-6 float-right">
-                                        <a href="tambah_pemesanan_pengguna.php?room_id=<?= $kamar['id'] ?>" class="btn btn-primary btn-block">Pesan</a>
+                                        <!-- <a href="tambah_pemesanan_pengguna.php?room_id=<?= $kamar['id'] ?>" class="btn btn-primary btn-block" data-bs-toggle="modal" data-bs-target="#exampleModal">Pesan</a> -->
+                                        <button type="button" class="btn btn-primary btn-block viewPesan" data-id="<?= $kamar['id'] ?>">Pesan</button>
                                     </div>
                                 </div>
                                 <?php
@@ -288,6 +295,48 @@
         </div>
       </div>
       <!-- About End -->
+
+      <!-- Modal -->
+      <div class="modal fade" id="modalPesan" tabindex="-1" aria-labelledby="modalPesanLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <form id="formPesan">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modalPesanLabel">Pesan Kamar</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                  <input type="hidden" name="id_kamar" id="id_kamar">
+                  <input type="hidden" name="id_user" id="id_user">
+                  <label for="metode_pembayaran" class="form-label">Metode Pembayaran</label>
+                  <select class="form-select" id="metode_pembayaran" name="metode_pembayaran">
+                    <option value="">Pilih Metode Pembayaran</option>
+                    <option value="transfer">Transfer</option>
+                    <option value="tunai">Tunai</option>
+                  </select>
+                </div>
+                <div class="mb-3" id="view_pembayaran">
+                  <label for="bukti_pembayaran" class="form-label">Bukti Pembayaran</label>
+                  <input type="file" class="form-control" id="bukti_pembayaran">
+                </div>
+                <div class="mb-3">
+                  <label for="exampleFormControlInput1" class="form-label">Check In</label>
+                  <input type="date" class="form-control" id="exampleFormControlInput1" placeholder="Check In">
+                </div>
+                <div class="mb-3">
+                  <label for="exampleFormControlInput1" class="form-label">Check Out</label>
+                  <input type="date" class="form-control" id="exampleFormControlInput1" placeholder="Check Out">
+                </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary pesanAction">Pesan</button>
+            </div>
+          </div>
+          </form>
+        </div>
+      </div>
 
       <!-- Footer Start -->
       <div
@@ -384,5 +433,55 @@
 
     <!-- Template Javascript -->
     <script src="assets/landing/js/main.js"></script>
+    <script>
+      $(document).ready(function(){	
+        $('#view_pembayaran').hide();
+        $('#metode_pembayaran').change(function(){
+          let metode = $(this).val();
+          if(metode == 'transfer'){
+            $('#view_pembayaran').show();
+          }else{
+            $('#view_pembayaran').hide();
+          }
+        });
+        $('.viewPesan').click(function(){
+          $('#modalPesan').modal('show');
+        });
+        //modal close
+        $('#modalPesan').on('hidden.bs.modal', function () {
+          $('#id_kamar').val('');
+          $('#id_user').val('');
+          $('#metode_pembayaran').val('');
+          $('#bukti_pembayaran').val('');
+          $('#exampleFormControlInput1').val('');
+          $('#exampleFormControlInput2').val('');
+        })
+        $('.pesanAction').click(function(){
+          let room_id = $('#id_kamar').val();
+          let user_id = $('#id_user').val();
+          let metode_pembayaran = $('#metode_pembayaran').val();
+          let bukti_pembayaran = $('#bukti_pembayaran').val();
+          let check_in = $('#exampleFormControlInput1').val();
+          let check_out = $('#exampleFormControlInput2').val();
+          $.ajax({
+            type: 'post',
+            url: 'functions/bookingActionPengguna.php',
+            data: {
+              'room_id': room_id,
+              'user_id': user_id,
+              'metode_pembayaran': metode_pembayaran,
+              'bukti_pembayaran': bukti_pembayaran,
+              'check_in': check_in,
+              'check_out': check_out,
+              'submit':'pesanKamar'
+            },
+            success: function(response){
+              $('#modalPesan').modal('hide');
+              return response;
+            }
+          });
+        })
+      });
+    </script>
   </body>
 </html>

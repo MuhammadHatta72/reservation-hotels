@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jan 17, 2024 at 06:49 AM
--- Server version: 10.4.14-MariaDB
--- PHP Version: 7.2.33
+-- Generation Time: Feb 19, 2024 at 10:56 PM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -33,8 +33,11 @@ CREATE TABLE `bookings` (
   `room_id` int(11) DEFAULT NULL,
   `check_in_date` date DEFAULT NULL,
   `check_out_date` date DEFAULT NULL,
+  `metode_pembayaran` varchar(100) NOT NULL,
+  `bukti_pembayaran` varchar(255) NOT NULL,
+  `sub_total` int(10) NOT NULL,
   `status` varchar(20) DEFAULT 'Pending'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -45,23 +48,24 @@ CREATE TABLE `bookings` (
 CREATE TABLE `rooms` (
   `id` int(11) NOT NULL,
   `room_number` int(11) DEFAULT NULL,
+  `harga` int(10) NOT NULL,
   `status` varchar(20) DEFAULT 'available'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `rooms`
 --
 
-INSERT INTO `rooms` (`id`, `room_number`, `status`) VALUES
-(1, 101, 'available'),
-(2, 102, 'available'),
-(3, 103, 'available'),
-(4, 104, 'available'),
-(5, 105, 'available'),
-(6, 106, 'available'),
-(7, 107, 'available'),
-(8, 108, 'available'),
-(9, 109, 'available');
+INSERT INTO `rooms` (`id`, `room_number`, `harga`, `status`) VALUES
+(1, 101, 250000, 'available'),
+(2, 102, 250000, 'available'),
+(3, 103, 250000, 'available'),
+(4, 104, 250000, 'available'),
+(5, 105, 250000, 'available'),
+(6, 106, 250000, 'available'),
+(7, 107, 250000, 'available'),
+(8, 108, 250000, 'available'),
+(9, 109, 250000, 'available');
 
 -- --------------------------------------------------------
 
@@ -78,14 +82,14 @@ CREATE TABLE `users` (
   `no_telp` varchar(15) DEFAULT NULL,
   `email` varchar(100) DEFAULT NULL,
   `status_verifikasi_admin` varchar(20) DEFAULT 'belum_verifikasi'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `role`, `nama`, `no_telp`, `email`, `status_verifikasi_admin`) VALUES
-(7, 'admin', '$2y$10$.tzdJy.sKrnZ4L7yZ4AGpuZlsU/W7nkD37QNQ8S/MtXF.WckUylvO', 'admin', 'Admin', '081554073742', 'admin@example.com', 'sudah_verifikasi');
+(7, 'admin', '$2y$10$.tzdJy.sKrnZ4L7yZ4AGpuZlsU/W7nkD37QNQ8S/MtXF.WckUylvO', 'admin', 'Admin', '081554073742', 'admin@gmail.com', 'sudah_verifikasi');
 
 --
 -- Indexes for dumped tables
