@@ -286,7 +286,7 @@
                                             <td>
                                                 <?php if($pemesanan['status_booking'] == 'Disetujui') : ?>
                                                     <span class="badge badge-primary"><?= $pemesanan['status_booking'] ?></span>
-                                                <?php elseif($pemesanan['status_booking'] == 'Pending') : ?>
+                                                <?php elseif($pemesanan['status_booking'] == 'Booking') : ?>
                                                     <span class="badge badge-warning"><?= $pemesanan['status_booking'] ?></span>
                                                 <?php else : ?>
                                                     <span class="badge badge-success"><?= $pemesanan['status_booking'] ?></span>

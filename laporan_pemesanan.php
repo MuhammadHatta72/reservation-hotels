@@ -273,6 +273,8 @@
                                             <th>Kamar</th>
                                             <th>Tanggal Masuk</th>
                                             <th>Tanggal Keluar</th>
+                                            <th>Metode Pembayaran</th>
+                                            <th>Total Pembayaran</th>
                                             <th>Status</th>
                                         </tr>
                                     </thead>
@@ -283,6 +285,8 @@
                                             <td><?= $pemesanan['room_number'] ?></td>
                                             <td><?= $pemesanan['check_in_date'] ?></td>
                                             <td><?= $pemesanan['check_out_date'] ?></td>
+                                            <td><?= $pemesanan['metode_pembayaran'] ?></td>
+                                            <td>Rp. <?= number_format($pemesanan['pembayaran'], 0, ',', '.') ?></td>
                                             <td>
                                                 <?php if($pemesanan['status_booking'] == 'Disetujui') : ?>
                                                     <span class="badge badge-primary"><?= $pemesanan['status_booking'] ?></span>

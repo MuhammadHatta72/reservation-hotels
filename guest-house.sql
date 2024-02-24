@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Feb 19, 2024 at 10:56 PM
+-- Generation Time: Feb 24, 2024 at 10:35 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -33,10 +33,9 @@ CREATE TABLE `bookings` (
   `room_id` int(11) DEFAULT NULL,
   `check_in_date` date DEFAULT NULL,
   `check_out_date` date DEFAULT NULL,
+  `pembayaran` varchar(100) NOT NULL,
   `metode_pembayaran` varchar(100) NOT NULL,
-  `bukti_pembayaran` varchar(255) NOT NULL,
-  `sub_total` int(10) NOT NULL,
-  `status` varchar(20) DEFAULT 'Pending'
+  `status` varchar(20) DEFAULT 'Booking'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -89,7 +88,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `role`, `nama`, `no_telp`, `email`, `status_verifikasi_admin`) VALUES
-(7, 'admin', '$2y$10$.tzdJy.sKrnZ4L7yZ4AGpuZlsU/W7nkD37QNQ8S/MtXF.WckUylvO', 'admin', 'Admin', '081554073742', 'admin@gmail.com', 'sudah_verifikasi');
+(1, 'admin', '$2y$10$.tzdJy.sKrnZ4L7yZ4AGpuZlsU/W7nkD37QNQ8S/MtXF.WckUylvO', 'admin', 'Admin', '081554073742', 'admin@gmail.com', 'sudah_verifikasi');
 
 --
 -- Indexes for dumped tables
@@ -123,7 +122,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `bookings`
 --
 ALTER TABLE `bookings`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `rooms`
@@ -135,7 +134,7 @@ ALTER TABLE `rooms`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- Constraints for dumped tables

@@ -286,12 +286,23 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="tanggal_check_in">Tanggal Check In</label>
-                                    <input type="date" class="form-control" id="tanggal_check_in" name="tanggal_check_in" value="<?= $data['check_in_date'] ?>" required>
+                                    <label for="checkin">Tanggal Check In</label>
+                                    <input type="date" class="form-control" id="checkin" name="checkin" value="<?= $data['check_in_date'] ?>" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="tanggal_check_out">Tanggal Check Out</label>
-                                    <input type="date" class="form-control" id="tanggal_check_out" name="tanggal_check_out" value="<?= $data['check_out_date'] ?>" required>
+                                    <label for="checkout">Tanggal Check Out</label>
+                                    <input type="date" class="form-control" id="checkout" name="checkout" value="<?= $data['check_out_date'] ?>" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="metode_pembayaran" class="form-label">Metode Pembayaran</label>
+                                    <select class="form-control" id="metode_pembayaran" name="metode_pembayaran" required>
+                                        <option value="">Pilih Metode Pembayaran</option>
+                                        <option value="tunai" <?= $data['metode_pembayaran'] == 'tunai' ? 'selected' : '' ?>>Tunai</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="pembayaran" class="form-label">Pembayaran</label>
+                                    <input type="text" class="form-control" id="pembayaran" name="pembayaran" placeholder="0" readonly>
                                 </div>
                                 <a href="pemesanan.php" class="btn btn-secondary">Kembali</a>
                                 <button type="submit" class="btn btn-primary" name="ubahPemesanan">Ubah Pemesanan</button>
@@ -361,6 +372,64 @@
     <!-- Page level custom scripts -->
     <script src="assets/admin/js/demo/datatables-demo.js"></script>
 
+    <script>
+        $(document).ready(function() {
+            let checkinDefault = new Date($('#checkin').val());
+            let checkoutDefault = new Date($('#checkout').val());
+            let hariDefault = Math.ceil((checkoutDefault-checkinDefault)/(1000*60*60*24));
+            let pembayaranDefault = hariDefault*250000;
+            $('#pembayaran').val(`Rp. ${pembayaranDefault}`);
+
+
+            $('#checkin').change(function(){
+            if($('#checkout').val() !== ''){
+                // hitung jumlah hari anatara checkin checkout
+                let checkin = new Date($('#checkin').val());
+                let checkout = new Date($('#checkout').val());
+                let dateCheckin = checkout.getDate()+'-'+checkout.getMonth()+1+'-'+checkout.getFullYear();
+                let dateCheckout = checkin.getDate()+'-'+checkin.getMonth()+1+'-'+checkin.getFullYear();
+                if(checkout < checkin){
+                alert('Hari Checkout Tidak Boleh Lebih Besar Dari Hari Checkin');
+                $('#checkin').val('');
+                $('#checkout').val('');
+                return false;
+                }
+                if(checkout.getTime() === checkin.getTime()){
+                    alert('Hari Checkin Tidak Boleh Sama Dengan Hari Checkout');
+                    $('#checkin').val('');
+                    $('#checkout').val('');
+                    return false;
+                }
+                let hari = Math.ceil((checkout-checkin)/(1000*60*60*24));
+                let pembayaran = hari*250000;
+                $('#pembayaran').val(`Rp. ${pembayaran}`);
+            }
+            });
+            $('#checkout').change(function(){
+            if($('#checkin').val() !== ''){
+                // hitung jumlah hari anatara checkin checkout
+                let checkin = new Date($('#checkin').val());
+                let checkout = new Date($('#checkout').val());
+                if(checkout < checkin){
+                alert('Hari Checkout Tidak Boleh Lebih Besar Dari Hari Checkin');
+                $('#checkin').val('');
+                $('#checkout').val('');
+                return false;
+                }
+                if(checkout.getTime() === checkin.getTime()){
+                    alert('Hari Checkin Tidak Boleh Sama Dengan Hari Checkout');
+                    $('#checkin').val('');
+                    $('#checkout').val('');
+                    return false;
+                }
+                let hari = Math.ceil((checkout-checkin)/(1000*60*60*24));
+                let pembayaran = hari*250000;
+                $('#pembayaran').val(`Rp. ${pembayaran}`);
+            }
+            });
+        });
+    </script>
+    
 </body>
 
 </html>

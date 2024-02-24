@@ -5,7 +5,7 @@ session_start();
 if(isset($_POST['checkOut'])){
     $id_booking = $_POST['id_booking'];
     $id_room = $_POST['id_room'];
-
+    
     $query = "UPDATE bookings SET status = 'Selesai' WHERE id = '$id_booking'";
     $result = mysqli_query($conn, $query);
 

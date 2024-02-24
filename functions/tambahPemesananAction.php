@@ -36,6 +36,16 @@ if(isset($_POST['tambahPemesanan'])){
         exit;
     }
 
+    //cek kamar
+    $query_kamar = mysqli_query($conn, "SELECT * FROM rooms WHERE id = '$id_room'");
+    $row_kamar = mysqli_fetch_assoc($query_kamar);
+    if($row_kamar['status'] == 'not_available'){
+        echo "<script>alert('Kamar ini tidak tersedia.');
+        window.location='../pemesanan.php';
+        </script>";
+        exit;
+    }
+
     $query = "INSERT INTO bookings (user_id, room_id, check_in_date, check_out_date, pembayaran, metode_pembayaran, status) VALUES ('$id_user', '$id_room', '$tanggal_mulai', '$tanggal_selesai', '$pembayaran', '$metode_pembayaran', 'Disetujui')";
     $result = mysqli_query($conn, $query);
 

@@ -32,10 +32,12 @@ $pdf->SetLineWidth(0);
 $pdf->SetFont('Arial','B',10);
 $pdf->Cell(11,10,'No',1,0,'C');
 $pdf->Cell(86,10,'Nama',1,0,'C');
-$pdf->Cell(50,10,'Nomor Kamar',1,0,'C');
-$pdf->Cell(50,10,'Tanggal Mulai',1,0,'C');
-$pdf->Cell(40,10,'Tanggal Selesai',1,0,'C');
+$pdf->Cell(20,10,'No. Kamar',1,0,'C');
+$pdf->Cell(30,10,'Tanggal Mulai',1,0,'C');
+$pdf->Cell(30,10,'Tanggal Selesai',1,0,'C');
+$pdf->Cell(20,10,'Metode',1,0,'C');
 $pdf->Cell(40,10,'Status',1,0,'C');
+$pdf->Cell(40,10,'Pembayaran',1,0,'C');
 
 $pdf->SetFont('Arial','',10);
 // display data pemesanan
@@ -44,12 +46,22 @@ foreach($query_hasil_pemesanan as $pemesanan){
     $pdf->Ln(10);
     $pdf->Cell(11,10,$no,1,0,'C');
     $pdf->Cell(86,10,$pemesanan['nama'],1,0,'C');
-    $pdf->Cell(50,10,$pemesanan['room_number'],1,0,'C');
-    $pdf->Cell(50,10,$pemesanan['check_in_date'],1,0,'C');
-    $pdf->Cell(40,10,$pemesanan['check_out_date'],1,0,'C');
+    $pdf->Cell(20,10,$pemesanan['room_number'],1,0,'C');
+    $pdf->Cell(30,10,$pemesanan['check_in_date'],1,0,'C');
+    $pdf->Cell(30,10,$pemesanan['check_out_date'],1,0,'C');
+    $pdf->Cell(20,10,$pemesanan['metode_pembayaran'],1,0,'C');
     $pdf->Cell(40,10,$pemesanan['status_booking'],1,0,'C');
+    $pdf->Cell(40,10, "Rp. " . number_format($pemesanan['pembayaran'],0,',','.'),1,0,'C');
     $no++;
 }
+
+$pdf->Ln(10);
+
+//add row total
+$pdf->Cell(237,10,'Total',1,0,'C');
+$pdf->Cell(40,10,'Rp. ' . number_format(array_sum(array_column($query_hasil_pemesanan, 'pembayaran')), 0, ',', '.'),1,0,'C');
+
+
 
 $pdf->Output();
 ?>
