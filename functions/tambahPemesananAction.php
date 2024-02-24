@@ -5,8 +5,10 @@ session_start();
 if(isset($_POST['tambahPemesanan'])){
     $id_user = $_POST['nama'];
     $id_room = $_POST['kamar'];
-    $tanggal_mulai = $_POST['tanggal_check_in'];
-    $tanggal_selesai = $_POST['tanggal_check_out'];
+    $tanggal_mulai = $_POST['checkin'];
+    $tanggal_selesai = $_POST['checkout'];
+    $metode_pembayaran = $_POST['metode_pembayaran'];
+    $pembayaran = str_replace('Rp. ', '', $_POST['pembayaran']);
 
     if($tanggal_mulai > $tanggal_selesai){
         echo "<script>alert('Tanggal Check In tidak boleh lebih besar dari tanggal Check Out.');
@@ -23,7 +25,7 @@ if(isset($_POST['tambahPemesanan'])){
     }
 
     //cek user masih punya pemesanan yang belum selesai
-    $query_cek = "SELECT * FROM bookings WHERE user_id = '$id_user' AND (status = 'Disetujui' OR status = 'Pending')";
+    $query_cek = "SELECT * FROM bookings WHERE user_id = '$id_user' AND (status = 'Disetujui' OR status = 'Booking')";
     $result_cek = mysqli_query($conn, $query_cek);
     $row_cek = mysqli_fetch_assoc($result_cek);
 
@@ -34,7 +36,7 @@ if(isset($_POST['tambahPemesanan'])){
         exit;
     }
 
-    $query = "INSERT INTO bookings (user_id, room_id, check_in_date, check_out_date, status) VALUES ('$id_user', '$id_room', '$tanggal_mulai', '$tanggal_selesai', 'Disetujui')";
+    $query = "INSERT INTO bookings (user_id, room_id, check_in_date, check_out_date, pembayaran, metode_pembayaran, status) VALUES ('$id_user', '$id_room', '$tanggal_mulai', '$tanggal_selesai', '$pembayaran', '$metode_pembayaran', 'Disetujui')";
     $result = mysqli_query($conn, $query);
 
     $query_kamar = "UPDATE rooms SET status = 'not_available' WHERE id = '$id_room'";

@@ -271,6 +271,7 @@
                                     <thead>
                                         <tr>
                                             <th>Nomor Kamar</th>
+                                            <th>Harga</th>
                                             <th>Status</th>
                                         </tr>
                                     </thead>
@@ -280,6 +281,7 @@
                                         ?>
                                         <tr>
                                             <td><?= $kamar['room_number'] ?></td>
+                                            <td><?= number_format($kamar['harga'], 0, ',', '.') ?>
                                             <td>
                                                 <?php
                                                 if($kamar['status'] == 'available'){

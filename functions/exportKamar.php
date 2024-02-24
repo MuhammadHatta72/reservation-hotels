@@ -31,7 +31,8 @@ $pdf->SetLineWidth(0);
 
 $pdf->SetFont('Arial','B',10);
 $pdf->Cell(11,10,'No',1,0,'C');
-$pdf->Cell(145,10,'Nomor Kamar',1,0,'C');
+$pdf->Cell(95,10,'Nomor Kamar',1,0,'C');
+$pdf->Cell(50,10,'Harga Kamar',1,0,'C');
 $pdf->Cell(120,10,'Status Kamar',1,0,'C');
 
 $pdf->SetFont('Arial','',10);
@@ -40,7 +41,8 @@ $no = 1;
 foreach($query_hasil_kamar as $kamar){
     $pdf->Ln(10);
     $pdf->Cell(11,10,$no,1,0,'C');
-    $pdf->Cell(145,10,$kamar['room_number'],1,0,'C');
+    $pdf->Cell(95,10,$kamar['room_number'],1,0,'C');
+    $pdf->Cell(50,10,number_format($kamar['harga'], 0, ',', '.'),1,0,'C');
     $pdf->Cell(120,10, $kamar['status'] == "available" ? "Tersedia" : "Tidak Tersedia",1,0,'C');
     $no++;
 }

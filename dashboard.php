@@ -280,7 +280,7 @@
                                 </div>
                                 <!-- Card Body -->
                                 <div class="card-body">
-                                    <img src="assets/admin/img/slide1.webp" alt="" width="100%">
+                                    <img src="assets/admin/img/homepage.jpeg" alt="" width="100%">
                                 </div>
                             </div>
                         </div>

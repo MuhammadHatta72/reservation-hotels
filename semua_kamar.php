@@ -92,7 +92,7 @@
                 </div>
                 <div class="h-100 d-inline-flex align-items-center py-2">
                   <i class="fa fa-phone-alt text-primary me-2"></i>
-                  <p class="mb-0">+012 345 6789</p>
+                  <p class="mb-0">+62 822-9370-8227</p>
                 </div>
               </div>
               <div class="col-lg-5 px-5 text-end">
@@ -237,9 +237,6 @@
                 Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit,
                 sed stet lorem sit clita duo justo magna dolore erat amet
               </p>
-              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                Launch demo modal
-              </button>
               <div class="row">
                     <?php
                         foreach($query_hasil_kamar as $kamar){
@@ -269,7 +266,7 @@
                                 <div class="row no-gutters align-items-center mt-3">
                                     <div class="col-md-6 float-right">
                                         <!-- <a href="tambah_pemesanan_pengguna.php?room_id=<?= $kamar['id'] ?>" class="btn btn-primary btn-block" data-bs-toggle="modal" data-bs-target="#exampleModal">Pesan</a> -->
-                                        <button type="button" class="btn btn-primary btn-block viewPesan" data-id="<?= $kamar['id'] ?>">Pesan</button>
+                                        <button type="button" class="btn btn-primary btn-block viewCheckUser" data-id="<?= $kamar['id'] ?>">Pesan</button>
                                     </div>
                                 </div>
                                 <?php
@@ -308,25 +305,27 @@
             <div class="modal-body">
                 <div class="mb-3">
                   <input type="hidden" name="id_kamar" id="id_kamar">
-                  <input type="hidden" name="id_user" id="id_user">
+                  <div class="mb-3">
+                    <label for="harga" class="form-label">Harga Perhari</label>
+                    <input class="form-control" id="harga" name="harga" type="text" value="Rp. 250.000" readonly>
+                  </div>
+                  <div class="mb-3">
+                    <label for="checkin" class="form-label">Check In</label>
+                    <input type="date" class="form-control" id="checkin" placeholder="Check In" required>
+                  </div>
+                  <div class="mb-3">
+                    <label for="checkout" class="form-label">Check Out</label>
+                    <input type="date" class="form-control" id="checkout" placeholder="Check Out" required>
+                  </div>
                   <label for="metode_pembayaran" class="form-label">Metode Pembayaran</label>
-                  <select class="form-select" id="metode_pembayaran" name="metode_pembayaran">
-                    <option value="">Pilih Metode Pembayaran</option>
-                    <option value="transfer">Transfer</option>
+                  <select class="form-select" id="metode_pembayaran" name="metode_pembayaran" required>
+                    <option value="pilih_metode_pembayaran">Pilih Metode Pembayaran</option>
                     <option value="tunai">Tunai</option>
                   </select>
                 </div>
-                <div class="mb-3" id="view_pembayaran">
-                  <label for="bukti_pembayaran" class="form-label">Bukti Pembayaran</label>
-                  <input type="file" class="form-control" id="bukti_pembayaran">
-                </div>
                 <div class="mb-3">
-                  <label for="exampleFormControlInput1" class="form-label">Check In</label>
-                  <input type="date" class="form-control" id="exampleFormControlInput1" placeholder="Check In">
-                </div>
-                <div class="mb-3">
-                  <label for="exampleFormControlInput1" class="form-label">Check Out</label>
-                  <input type="date" class="form-control" id="exampleFormControlInput1" placeholder="Check Out">
+                  <label for="pembayaran" class="form-label">Pembayaran</label>
+                  <input type="text" class="form-control" id="pembayaran" name="pembayaran" placeholder="0" readonly>
                 </div>
             </div>
             <div class="modal-footer">
@@ -338,63 +337,28 @@
         </div>
       </div>
 
+      <!-- Modal Cek User Login -->
+      <div class="modal fade" id="modalLogin" tabindex="-1" aria-labelledby="modalLoginLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modalLoginLabel">Peringatan</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+            <p class="text-secondary">Apakah kamu sudah login?Jika anda login , akan mendapatkan kartu member!</p>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <a href="login.php" class="btn btn-info btn-block">Login</a>
+              <button type="button" class="btn btn-primary ViewPesanan">Pesan Kamar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <!-- Footer Start -->
       <div
         class="container-fluid bg-dark text-light footer wow fadeIn"
-        data-wow-delay="0.1s"
-      >
-        <!-- <div class="container pb-5">
-          <div class="row g-5">
-            <div class="col-md-6 col-lg-4">
-              <div class="bg-primary rounded p-4">
-                <a href="index.html" class="text-center d-block"
-                  >
-                  <img src="assets/landing/img/pppbulutuban.png" alt="" width="100px" class="mx-auto d-block mb-2" />
-                  <h1 class="text-white text-uppercase mb-3">Guest House</h1></a
-                >
-                <p class="mb-2 text-center">
-                  Erat ipsum justo amet duo et elitr dolor, est duo duo eos
-                  lorem sed diam stet diam sed stet lorem.
-                </p>
-              </div>
-            </div>
-            <div class="col-md-6 col-lg-3">
-              <h6
-                class="section-title text-start text-primary text-uppercase mb-4"
-              >
-                Contact
-              </h6>
-              <p class="mb-2">
-                <i class="fa fa-map-marker-alt me-3"></i>Jl. Raya Tuban - Semarang No.Km 45, Bulumeduro, Kec. Bancar, Kabupaten Tuban, Jawa Timur 62354
-              </p>
-              <p class="mb-2">
-                <i class="fa fa-phone-alt me-3"></i>+012 345 67890
-              </p>
-              <p class="mb-2">
-                <i class="fa fa-envelope me-3"></i>info@example.com
-              </p>
-              <div class="d-flex pt-2">
-                <a class="btn btn-outline-light btn-social" href=""
-                  ><i class="fab fa-twitter"></i
-                ></a>
-                <a class="btn btn-outline-light btn-social" href=""
-                  ><i class="fab fa-facebook-f"></i
-                ></a>
-                <a class="btn btn-outline-light btn-social" href=""
-                  ><i class="fab fa-youtube"></i
-                ></a>
-                <a class="btn btn-outline-light btn-social" href=""
-                  ><i class="fab fa-linkedin-in"></i
-                ></a>
-              </div>
-            </div>
-            <div class="col-lg-5 col-md-12">
-              <div style="width: 100%">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3961.9930406645594!2d111.72276047508828!3d-6.770699866211127!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e770f5b81de2363%3A0xab1208b5d261f1cd!2sUPT%20Pelabuhan%20Perikanan%20Pantai%20Bulu!5e0!3m2!1sid!2sid!4v1705311093898!5m2!1sid!2sid" width="500" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-              </div>
-            </div>
-          </div>
-        </div> -->
+        data-wow-delay="0.1s">
         <div class="container">
           <div class="copyright">
             <div class="row">
@@ -435,49 +399,94 @@
     <script src="assets/landing/js/main.js"></script>
     <script>
       $(document).ready(function(){	
-        $('#view_pembayaran').hide();
-        $('#metode_pembayaran').change(function(){
-          let metode = $(this).val();
-          if(metode == 'transfer'){
-            $('#view_pembayaran').show();
-          }else{
-            $('#view_pembayaran').hide();
-          }
+        $('.viewCheckUser').click(function(){
+          $('#modalLogin').modal('show');
+          $('#id_kamar').val($(this).data('id'));
         });
-        $('.viewPesan').click(function(){
+        $('.ViewPesanan').click(function(){
+          $('#modalLogin').modal('hide');
           $('#modalPesan').modal('show');
         });
         //modal close
         $('#modalPesan').on('hidden.bs.modal', function () {
           $('#id_kamar').val('');
-          $('#id_user').val('');
-          $('#metode_pembayaran').val('');
-          $('#bukti_pembayaran').val('');
-          $('#exampleFormControlInput1').val('');
-          $('#exampleFormControlInput2').val('');
-        })
+          $('#metode_pembayaran').val('pilih_metode_pembayaran');
+          $('#pembayaran').val('');
+          $('#checkin').val('');
+          $('#checkout').val('');
+        });        
+        $('#checkin').change(function(){
+          if($('#checkout').val() !== ''){
+            // hitung jumlah hari anatara checkin checkout
+            let checkin = new Date($('#checkin').val());
+            let checkout = new Date($('#checkout').val());
+            let dateCheckin = checkout.getDate()+'-'+checkout.getMonth()+1+'-'+checkout.getFullYear();
+            let dateCheckout = checkin.getDate()+'-'+checkin.getMonth()+1+'-'+checkin.getFullYear();
+            if(checkout < checkin){
+              alert('Hari Checkout Tidak Boleh Lebih Besar Dari Hari Checkin');
+              $('#checkin').val('');
+              $('#checkout').val('');
+              return false;
+            }
+            if(checkout.getTime() === checkin.getTime()){
+                alert('Hari Checkin Tidak Boleh Sama Dengan Hari Checkout');
+                $('#checkin').val('');
+                $('#checkout').val('');
+                return false;
+            }
+            let hari = Math.ceil((checkout-checkin)/(1000*60*60*24));
+            let pembayaran = hari*250000;
+            $('#pembayaran').val(`Rp. ${pembayaran}`);
+          }
+        });
+        $('#checkout').change(function(){
+          if($('#checkin').val() !== ''){
+            // hitung jumlah hari anatara checkin checkout
+            let checkin = new Date($('#checkin').val());
+            let checkout = new Date($('#checkout').val());
+            if(checkout < checkin){
+              alert('Hari Checkout Tidak Boleh Lebih Besar Dari Hari Checkin');
+              $('#checkin').val('');
+              $('#checkout').val('');
+              return false;
+            }
+            if(checkout.getTime() === checkin.getTime()){
+                alert('Hari Checkin Tidak Boleh Sama Dengan Hari Checkout');
+                $('#checkin').val('');
+                $('#checkout').val('');
+                return false;
+            }
+            let hari = Math.ceil((checkout-checkin)/(1000*60*60*24));
+            let pembayaran = hari*250000;
+            $('#pembayaran').val(`Rp. ${pembayaran}`);
+          }
+        });
         $('.pesanAction').click(function(){
           let room_id = $('#id_kamar').val();
-          let user_id = $('#id_user').val();
           let metode_pembayaran = $('#metode_pembayaran').val();
-          let bukti_pembayaran = $('#bukti_pembayaran').val();
-          let check_in = $('#exampleFormControlInput1').val();
-          let check_out = $('#exampleFormControlInput2').val();
+          let pembayaran = $('#pembayaran').val();
+          let check_in = $('#checkin').val();
+          let check_out = $('#checkout').val();
+          if(metode_pembayaran == 'pilih_metode_pembayaran'){
+            alert('Pilih Metode Pembayaran Terlebih Dahulu');
+            return false;
+          }
           $.ajax({
             type: 'post',
-            url: 'functions/bookingActionPengguna.php',
+            url: './functions/bookingActionPengguna.php',
             data: {
               'room_id': room_id,
-              'user_id': user_id,
               'metode_pembayaran': metode_pembayaran,
-              'bukti_pembayaran': bukti_pembayaran,
+              'pembayaran': pembayaran,
               'check_in': check_in,
               'check_out': check_out,
-              'submit':'pesanKamar'
+              'pesanKamar':'pesanKamar'
             },
             success: function(response){
               $('#modalPesan').modal('hide');
-              return response;
+              alert(response);
+              location.reload();
+              return false;
             }
           });
         })

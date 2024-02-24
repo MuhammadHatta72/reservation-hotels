@@ -16,6 +16,7 @@ if(isset($_POST['email'])){
         if(password_verify($password, $row['password'])){
             if($row['status_verifikasi_admin'] == 'sudah_verifikasi'){
                 $_SESSION['login'] = true;
+                $_SESSION['id'] = $row['id'];
                 $_SESSION['role'] = $row['role'];
                 $_SESSION['nama'] = $row['nama'];
                 $_SESSION['username'] = $row['username'];

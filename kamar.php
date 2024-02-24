@@ -294,6 +294,7 @@
                                     <?php
                                     }
                                     ?>
+                                    <div class="h6 mt-1 font-weight-bold text-gray-800">Harga per malam: Rp. <?= number_format($kamar['harga'], 0, ',', '.') ?></div>
                                 </div>
                             </div>
                         </div>

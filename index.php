@@ -85,7 +85,7 @@
                 </div>
                 <div class="h-100 d-inline-flex align-items-center py-2">
                   <i class="fa fa-phone-alt text-primary me-2"></i>
-                  <p class="mb-0">+012 345 6789</p>
+                  <p class="mb-0">+62 822-9370-8227</p>
                 </div>
               </div>
               <div class="col-lg-5 px-5 text-end">
@@ -281,15 +281,26 @@
               </h6>
               <h1 class="mb-4">
                 Selamat Datang di
-                <span class="text-primary text-uppercase">Guest House</span>
+                <span class="text-primary text-uppercase">Bulu Beach Resort</span>
                 UPT PPP Bulu Tuban
               </h1>
               <p class="mb-4">
-                Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit.
-                Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit,
-                sed stet lorem sit clita duo justo magna dolore erat amet
+              Bulu Beach Resort merupakan hunian inap sederhana yang memiliki kamar yang luas, dengan fasilitas yang cukup setara dengan bintang ★★★ dengan harga terjangkau.
               </p>
-              <div class="row g-3 pb-4">
+              <p class="mb-4">
+                Mau travelling ke mana pun anda dan menginap di hotel bintang berapa pun, ada etika dan aturan yang harus anda patuhi sebagai seorang tamu yang menginap.
+              </p>
+
+              <ul class="list-unstyled mb-4">
+                <li class="mb-2"><i class="fa fa-check text-primary me-3"></i>Check in : 13.00/ Check out : 12.00</li>
+                <li class="mb-2"><i class="fa fa-check text-primary me-3"></i>Kehilangan barang tidak menjadi tanggung jawab pihak hotel</li>
+                <li class="mb-2"><i class="fa fa-check text-primary me-3"></i>Barang hotel yang rusak dikenakan denda sesuai harga pasar</li>
+                <li class="mb-2"><i class="fa fa-check text-primary me-3"></i>Kunci kamar diserahkan ke resepsionis pada saat check out</li>
+                <li class="mb-2"><i class="fa fa-check text-primary me-3"></i>Kapasitas kamar 2 dewasa dan 1 anak (usia anak kurang dari 6 tahun)</li>
+                <li class="mb-2"><i class="fa fa-check text-primary me-3"></i>Dilarang membawa senjata tajam, narkoba dan obat terlarang</li>
+              </ul>
+
+              <!-- <div class="row g-3 pb-4">
                 <div class="col-sm-4 wow fadeIn" data-wow-delay="0.1s">
                   <div class="border rounded p-1">
                     <div class="border rounded text-center p-4">
@@ -317,38 +328,16 @@
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> -->
               <a class="btn btn-primary py-3 px-5 mt-2" href="">Layanan Kami</a>
             </div>
             <div class="col-lg-6">
               <div class="row g-3">
-                <div class="col-6 text-end">
+                <div class="col-12 text-end">
                   <img
-                    class="img-fluid rounded w-75 wow zoomIn"
+                    class="img-fluid rounded wow zoomIn"
                     data-wow-delay="0.1s"
-                    src="assets/landing/img/about-1.jpg"
-                    style="margin-top: 25%"
-                  />
-                </div>
-                <div class="col-6 text-start">
-                  <img
-                    class="img-fluid rounded w-100 wow zoomIn"
-                    data-wow-delay="0.3s"
-                    src="assets/landing/img/about-2.jpg"
-                  />
-                </div>
-                <div class="col-6 text-end">
-                  <img
-                    class="img-fluid rounded w-50 wow zoomIn"
-                    data-wow-delay="0.5s"
-                    src="assets/landing/img/about-3.jpg"
-                  />
-                </div>
-                <div class="col-6 text-start">
-                  <img
-                    class="img-fluid rounded w-75 wow zoomIn"
-                    data-wow-delay="0.7s"
-                    src="assets/landing/img/about-4.jpg"
+                    src="assets/landing/img/tentang.png"
                   />
                 </div>
               </div>
